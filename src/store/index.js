@@ -7,6 +7,10 @@ Vue.use(Vuex);
 const state = {
   items: [],
   manufacturerID: "",
+  companyName: "",
+  message: "",
+  selctedItem: {},
+  salesRep: {},
 };
 
 const actions = {
@@ -15,6 +19,9 @@ const actions = {
       commit("getData", response);
     });
   },
+  selectItem({ commit }, item) {
+    commit("updateSelected", item);
+  },
 };
 
 const mutations = {
@@ -22,6 +29,12 @@ const mutations = {
     // console.log(res);
     state.items = res.data.items;
     state.manufacturerID = res.data.ManufacturerID;
+    state.salesRep = res.data.SalesRep;
+    state.companyName = res.data.CompanyName;
+    state.message = res.data.Message;
+  },
+  updateSelected(state, payload) {
+    state.selctedItem = payload;
   },
 };
 
