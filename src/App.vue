@@ -2,24 +2,23 @@
   <div id="app">
     <div id="nav">
       <router-link to="/"><img :src="logo" alt="" /></router-link>
-      <h2>{{ companyName }}</h2>
+      <h3>{{ companyName }}</h3>
     </div>
     <router-view />
     <div id="footer">
-      <p>
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eligendi sunt
-        a provident magnam itaque. Cum delectus totam assumenda dolores sequi?
-        Tenetur ab sequi quisquam nobis distinctio nisi maxime voluptatem
-        assumenda.
-      </p>
+      <SalesRep />
     </div>
   </div>
 </template>
 
 <script>
 import { mapState, mapActions } from "vuex";
+import SalesRep from "@/components/salesRep.vue";
 
 export default {
+  components: {
+    SalesRep,
+  },
   data() {
     return {};
   },
@@ -39,26 +38,46 @@ export default {
 </script>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+body {
+  background-color: $lightGray;
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: $merriweather;
+}
+h1 {
+  font-size: 3em;
+}
+h2 {
+  font-size: 2.7em;
+}
+hr {
+  color: $yellow;
 }
 
 #nav {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  align-items: center;
   border-bottom: $darkGray solid 3px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+  background-color: #fff;
+  h3 {
+    margin-left: 20px;
+    align-content: center;
   }
+}
+#footer {
+  min-height: 100px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 </style>

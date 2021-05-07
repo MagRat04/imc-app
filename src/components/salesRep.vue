@@ -1,6 +1,5 @@
 <template>
   <div>
-    <p id="message">{{ message }}</p>
     <h3>
       Sales Rep:
       <span style="font-weight: normal"

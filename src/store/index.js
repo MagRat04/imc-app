@@ -26,7 +26,6 @@ const actions = {
 
 const mutations = {
   getData(state, res) {
-    // console.log(res);
     state.items = res.data.items;
     state.manufacturerID = res.data.ManufacturerID;
     state.salesRep = res.data.SalesRep;

@@ -1,16 +1,26 @@
 <template>
   <div class="container">
-    <h1>Product Gallery</h1>
     <div class="grid">
-      <div v-for="item in items" :key="item.ItemID" class="cell">
-        <router-link
-          :to="{ name: 'Product', params: { id: item.ItemID } }"
-          @click.native="selectedItem(item)"
-        >
-          <img :src="photoURL(item.PhotoName)" class="responsive-image" />
-        </router-link>
-        <h2>{{ item.ItemName }}</h2>
-        <h3>${{ item.BasePrice }}</h3>
+      <div v-for="item in items" :key="item.ItemID" class="cell item-card">
+        <div class="item-thumb">
+          <router-link
+            :to="{ name: 'Product', params: { id: item.ItemID } }"
+            @click.native="selectedItem(item)"
+          >
+            <img :src="photoURL(item.PhotoName)" class="responsive-image" />
+          </router-link>
+        </div>
+        <div class="item-details">
+          <span class="item-catagory">Brown, Wood</span>
+          <h4>
+            <router-link
+              :to="{ name: 'Product', params: { id: item.ItemID } }"
+              @click.native="selectedItem(item)"
+              >{{ item.ItemName }}</router-link
+            >
+          </h4>
+          <div class="item-price">{{ formatPrice(item.BasePrice) }}</div>
+        </div>
       </div>
     </div>
   </div>
@@ -29,60 +39,123 @@ export default {
   methods: {
     ...mapActions(["selectItem"]),
     photoURL(url) {
-      return url + "?w=300&h=300&mode=carve&crop=10,10,-10,-10";
+      return `${url}?w=300&h=300&mode=carve&crop=10,10,-10,-10`;
     },
     selectedItem(item) {
       this.selectItem(item);
+    },
+    formatPrice(ammt) {
+      return ammt.toLocaleString("en-US", {
+        style: "currency",
+        currency: "USD",
+      });
     },
   },
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
-body {
-  background-color: $lightGray;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5 {
-  font-family: $merriweather;
-}
-h1 {
-  font-size: 3em;
-}
-h2 {
-  font-size: 2.7em;
-}
-hr {
-  color: $yellow;
-}
-
+// Grid Styles
 .container {
   margin: 0 auto;
   max-width: 1200px;
   padding: 0 1rem;
-  margin-top: 75px;
+  // margin-top: 75px;
 }
 
 .responsive-image {
   max-width: 100%;
 }
+
 .cell {
-  &:hover {
-    transform: scale(1);
-    box-shadow: 5px 20px 30px rgba(0, 0, 0, 0.2);
-  }
+  margin: 1rem;
 }
 .cell img {
+  // display: block;
+}
+
+a {
+  text-decoration: none;
+}
+.item-card {
+  width: 320px;
+  position: relative;
+  box-shadow: 0 2px 7px #dfdfdf;
+  margin: 50px auto;
+  background: #fafafa;
+  text-align: center;
+}
+
+.item-thumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
+  padding: 20px;
+  background: #fff;
+}
+
+.item-thumb img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.item-details {
+  padding: 30px;
+}
+
+.item-catagory {
   display: block;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #ccc;
+  margin-bottom: 18px;
 }
-.grid {
-  margin-top: 75px;
+
+.item-details h4 a {
+  font-weight: 500;
+  display: block;
+  margin-bottom: 18px;
+  text-transform: uppercase;
+  color: #363636;
+  text-decoration: none;
+  transition: 0.3s;
 }
+
+.item-details h4 a:hover {
+  color: #fbb72c;
+}
+
+.item-details p {
+  font-size: 15px;
+  line-height: 22px;
+  margin-bottom: 18px;
+  color: #999;
+}
+
+.item-price {
+  font-size: 18px;
+  color: #fbb72c;
+  font-weight: 600;
+}
+
+.item-links {
+  text-align: right;
+}
+
+.item-links a {
+  display: inline-block;
+  margin-left: 5px;
+  color: #e1e1e1;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+.item-links a:hover {
+  color: #fbb72c;
+}
+
 @include tablet {
   .grid {
     display: flex;
@@ -92,6 +165,12 @@ hr {
   .cell {
     width: calc(50% - 2rem);
   }
+  // .item-card {
+  //   width: 380px;
+  // }
+  // .item-thumb {
+  //   padding: 50px;
+  // }
 }
 
 @include tablet-landscape {

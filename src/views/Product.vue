@@ -1,8 +1,12 @@
 <template>
   <div class="container">
-    <div class="grid">
-      <div class="cell">
-        <img :src="productImg" class="responsive-image" />
+    <div class="grid details-card">
+      <div id="imageContainer" class="cell">
+        <img
+          :src="productImg"
+          :alt="selctedItem.ItemName"
+          class="responsive-image"
+        />
       </div>
       <div class="cell" style="text-align: left">
         <h1>{{ selctedItem.ItemName }}</h1>
@@ -16,20 +20,13 @@
         <div class="button">Add to cart</div>
       </div>
     </div>
-    <div class="grid">
-      <SalesRep></SalesRep>
-    </div>
   </div>
 </template>
 
 <script>
 import { mapState } from "vuex";
-import SalesRep from "@/components/salesRep.vue";
 
 export default {
-  components: {
-    SalesRep,
-  },
   data() {
     return {
       id: this.$route.params.id,
@@ -56,6 +53,16 @@ h1 {
   margin-top: 25px;
   font-size: 16px;
   line-height: 1.6;
+}
+#imageContainer {
+  background-color: #fff;
+}
+
+.details-card {
+  width: 90%;
+  box-shadow: 0 2px 7px #dfdfdf;
+  margin: 50px auto;
+  padding: 10px 0;
 }
 
 .sizing-list {
@@ -96,6 +103,7 @@ h1 {
     }
   }
 }
+
 @include tablet {
   .cell {
     width: calc(50% - 2rem);

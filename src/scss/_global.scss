@@ -7,11 +7,6 @@ $accent: #52ab98;
 $lato: "Lato", sans-serif;
 $merriweather: "Merriweather", serif;
 
-@mixin phone {
-  @media (max-width: 599px) {
-    @content;
-  }
-}
 @mixin tablet {
   @media (min-width: 600px) {
     @content;
