@@ -11,7 +11,7 @@
       <div class="cell" style="text-align: left">
         <h1>{{ selctedItem.ItemName }}</h1>
         <hr />
-        <h3 id="price">${{ selctedItem.BasePrice }}</h3>
+        <h3 id="price">{{ formatPrice(selctedItem.BasePrice) }}</h3>
         <p id="itemId">Product ID: {{ selctedItem.ItemID }}</p>
         <p id="itemDimensions">Dimensions: {{ selctedItem.Dimensions }}</p>
         <p id="desc" v-if="selctedItem.Description != ''">
@@ -38,6 +38,14 @@ export default {
       return `http://images.repzio.com/productimages/202/${this.id}_lg.jpg?w=450&mode=crop&crop=10,10,-10,-10`;
     },
   },
+  methods: {
+    formatPrice(ammt) {
+      return ammt.toLocaleString("en-US", {
+        style: "currency",
+        currency: "USD",
+      });
+    },
+  },
 };
 </script>
 
@@ -48,14 +56,23 @@ h1 {
 }
 #price {
   font-size: 20px;
+  color: $yellow;
 }
 #desc {
   margin-top: 25px;
+  margin-bottom: 25px;
   font-size: 16px;
   line-height: 1.6;
 }
 #imageContainer {
   background-color: #fff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  img {
+    padding: 20px;
+  }
 }
 
 .details-card {

@@ -1,10 +1,10 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/"><img :src="logo" alt="" /></router-link>
+      <router-link to="/"><img :src="logo" alt="RepZio Logo" /></router-link>
       <h3>{{ companyName }}</h3>
     </div>
-    <router-view />
+    <div class="siteContent"><router-view /></div>
     <div id="footer">
       <SalesRep />
     </div>
@@ -59,7 +59,17 @@ h2 {
 hr {
   color: $yellow;
 }
-
+p {
+  font-family: $lato;
+}
+#app {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+.siteContent {
+  flex: 1;
+}
 #nav {
   display: flex;
   flex-direction: row;
@@ -75,6 +85,7 @@ hr {
 #footer {
   min-height: 100px;
   background-color: #fff;
+  text-align: center;
   display: flex;
   flex-direction: row;
   justify-content: center;
