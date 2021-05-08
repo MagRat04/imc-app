@@ -7,7 +7,7 @@
             :to="{ name: 'Product', params: { id: item.ItemID } }"
             @click.native="selectedItem(item)"
           >
-            <img :src="photoURL(item.PhotoName)" class="responsive-image" />
+            <img v-lazy="photoURL(item.PhotoName)" class="responsive-image" />
           </router-link>
         </div>
         <div class="item-details">

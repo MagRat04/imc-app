@@ -35,7 +35,7 @@ export default {
   computed: {
     ...mapState(["selctedItem"]),
     productImg() {
-      return `http://images.repzio.com/productimages/202/${this.id}_lg.jpg?w=450&mode=crop&crop=10,10,-10,-10`;
+      return `http://images.repzio.com/productimages/202/${this.id}_lg.jpg?w=450&mode=crop&crop=11,11,-11,-11`;
     },
   },
   methods: {
@@ -106,7 +106,7 @@ h1 {
     left: 50%;
     bottom: 0;
     height: 3px;
-    background: $yellow;
+    background-color: $yellow;
     height: 120%;
     left: -10%;
     transform: skewX(15deg);
